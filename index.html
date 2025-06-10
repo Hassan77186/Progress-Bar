@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar</title>
+</head>
+<body>
+    <h1>Progress bar</h1>
+    <div class="line"></div>
+    <div class="container">
+        <div class="input-container">
+        <h1>Enter values: </h1>
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" /><br />
+        <label for="percent">Percent:</label>
+        <input type="number" id="percent" name="percent" /><br />
+        <label for="color">Color:</label>
+        <input type="color" name="color" id="color"> <br />
+        <button onclick="bar()">Submit</button>
+    </div>
+        <div class="bar" id="bar">
+            <div class="inner-bar" id="inner-bar">
+            </div>
+        </div>
+        <div class="percent-bar">
+            <div class="percent-bars">
+                <div class="twenty-five">
+                        25%
+                </div>
+                <div class="fifty">
+                        50%
+                </div>
+                <div class="seventy-five">
+                        75%
+                </div>
+                <div class="hundred">
+                        100%
+                </div>
+            </div>
+        </div>
+        <p>
+            Developed By Hassan Ahmed Khayat
+        </p>
+    </div>
+
+</body>
+</html>
+
+
+<style>
+*{
+    margin: 0px;
+}
+h1{
+    text-align: center;
+    font-style: italic;
+}
+
+input{
+    margin: 5px;
+}
+button{
+    padding: 5px;
+    width: 50%;
+    border: none;
+    box-shadow: 2px 2px 2px gray;
+    border-radius: 10px;
+    background: #9b2a2a;
+    background: linear-gradient(90deg, rgba(155, 42, 42, 1) 0%, rgba(242, 255, 0, 1) 50%, rgba(26, 255, 0, 1) 100%);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.line{
+    border: 2px solid black;
+}
+
+.container{
+    width: 50%;
+    height: 500px;
+    align-content: center;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.input-container{
+    padding: 20px ;
+}
+
+.bar{
+    display: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50%;
+    margin: 5px auto;
+    padding-right: 4px;
+}
+.inner-bar{
+    background-color: yellow;
+    border-radius: 8px;
+    padding: 2px;
+    width: 0%;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 2px 0px 4px grey ;
+    transition: width 3s ease-in-out;
+}
+
+.percent-bars{
+    display: flex;
+
+}
+
+.percent-bar{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50%;
+    margin: 5px auto;
+}
+
+.twenty-five{
+    border-top-left-radius: 8px ;
+    border-bottom-left-radius: 8px ;
+    background-color: red;
+    width: 25%;
+}
+
+.fifty{
+    background-color: sandybrown;
+    width: 25%;
+}
+
+.seventy-five{
+    background-color: yellow;
+    width: 25%;
+}
+
+.hundred{
+    border-top-right-radius: 8px ;
+    border-bottom-right-radius: 8px ;
+    background-color: green;
+    width: 25%;
+}
+
+
+</style>
+<script>
+    function bar() {
+        const text = document.getElementById("text").value;
+        const percent = parseFloat(document.getElementById("percent").value);
+        const innerBar = document.getElementById("inner-bar");
+        const Color = document.getElementById("color").value;
+        const bar = document.getElementById("bar");
+
+        const safePercent = Math.max(0, Math.min(100, percent));
+
+        innerBar.style.width = "0%"; 
+        innerBar.innerHTML = "";
+        bar.style.display = "block";
+        
+        setTimeout(() => {
+            innerBar.innerHTML = text;
+            innerBar.style.backgroundColor = Color;
+            innerBar.style.width = safePercent + "%";
+        }, 50);
+    }
+</script>
